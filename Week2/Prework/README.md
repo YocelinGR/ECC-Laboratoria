@@ -72,7 +72,7 @@
 
     iv.
 
-        a. Authentication
+        a. Authentication/ Autenticación
             La autenticación solo debe usarse si se aporta valor para la aplicación, como por ejemplo, personalización, acceder a funciones adicionales, comprar contenido o sincronizar información. La autenticación con Inicio de sesión de Apple es simple y segura, además ofrece un inicio de sessión consistente y comoda.
             Alternativas adicionales a la autenticación con Apple:
             
@@ -91,13 +91,70 @@
             * Usa métodos de autenticación precisos (habilita los métodos dependiendo de las capacidades de los dispositivos)
             * Evita ofrecer configuración para optar por autenticación biométrica(si esta habilidada en el sistema, asuma que el usuario quiere usarla, en caso contrario no sugerir para evitar confusiones de que si usa y que no esa forma de autenticación)
             * No usar iconos para identificar las características de autenticación del sistema(el usuario puede asumir que ciertas formas de autenticación con las que esta familiarizado esten habilitadas cuando esto no es cierto)
-        b. Data Entry
-        c. Gestures
+        b. Data Entry / Entradas de Datos
+            Las entradas de datos deben de ser minimas para obtener resultados, o el proceso serà tedioso para el usuario.
+            Algunas recomendaciones para hacer las interacciones con datos más comodas son:
+                * Presenta opciones: Hace la información más eficiente.
+                * Obten información del sistema lo más posible
+                * Provee de valores por defecto: Proveer entradas de datos con los valores más comunes facilita la toma de deciciones y hace más rápio el proceso.
+                * Permitir avanzar solo con los valores requeridos: Habilidar los elementos (botones, etc) cuando esto suceda.
+                * Validación dinámica de campos: Validar antes de pasar a otro campo
+                * Uso de valores requeridos solo cuando sea necesario
+                * Facil navegación entre campos: Facilita el ordenamiento y la selección
+                * Muestre el proposito del campo
+        c. Gestures / Gestos
+            Los gestos permiten tener una sensación de manipulación directa entre los objetos en la pantalla y los gestos en la pantalla.
+            Consejos:
+                - Usa gestos comunes para acciones comunes, considerar la posiblilidad de gestos personalizados solo si aplica para la aplicación
+
+                - Evita el uso de gestos standar para acciones no estandar
+
+                - Evite el uso de los gestos a los costados de la pantalla: evite que el usuario ingrese a las acciones del sistema.
+
+                - Ofrezca gestos de acceso para complementar acciones
+
+                - Usa gestos de multi dedo 
+
+                - Gestos standar:
+                    * Tap: Activa un control o seleccióna un objeto
+                    * Drag: Mueve un elemento
+                    * Flick: Hace scroll horizontal
+                    * Swipe: Vuelve a la pantalla anterior o revela vistas ocultas, cuando se hace con cuetro dedos, navega entre aplicaciones.
+                    * Doble tap: Hace zoom y centra la imagen
+                    * Pellizco. Se acerca cuando se pellizca hacia afuera, se aleja cuando se pellizca hacia adentro.
+                    * Toca y sostiene: En editores de texto, posiciona el cursor, en vistas reordena artículos
+                    * Agitar: Deshacer o rehacer
+                    * Totate: Rota una imagen o vista.
     v. Dentro de la sección de Visual Design, describe lo siguiente:
 
     vi.
 
         a. Adaptability and Layout
+            Ser adaptable y responsivo en diferentes dispositivos, tamaño de pantallas y orientaciones.
+            - Auto Layout: Herramienta que define reglas (constraints) que gobiernan el contenido de la app.
+            Cambia los layouts de acuerdo a constraints especificos cuando variaciones conocidas (traits) sin detectadas. Es posibla adaptar:
+                * Tamaños de pantalla, resoluciones y color
+                * Orientación de dispositivos
+                * Vista dividida
+                * Modo multitare
+                * Modo de escritura - cambios de tamaño del texto
+                * Funciones de internacionalización (dirección, fecha y hora)
+                * Funciones del sistema habilitadas (Touch 3d)
+            - Guias de layout y área segura
+                * Definen margenes que ayudan al posicionamiento, alineacion y espaciado. El sistema incluye guías de diseñoque facilitan la aplicación de márgenes estándar al rededor del conenido y restringen el espacio ocupado por el texto.
+                * El uso de UIKit es consistente con las guias de layout
+                * Las clases son variaciones (traits) que se asignan a las áreas de contenido con base en su tamaño. El sistema define tamaño regular (espacio expansivo) y compacto (espacio restringido) que describen el largo y ancho de la vista. Los tamaños se pueden combinar:
+                    - Ancho regular, altura regular
+                    - Ancho compacto, altura compacta
+                    - Ancho regular, altura compacta
+                    - Ancho compacto, altura regular
+                * Clases de tamaño de dispositivo: Las combinaciones anteriores si definen para diferentes dispositivos en modo orizontal y vertical
+                * Clases de tamaño multitarea: se aplica para el iPad y aplican para la division de pantalla.
+            - Considerraciones generales de layout:
+                * Asegura que el contenido primario es claro y con tamaño por defecto
+                * Mantener apariencia general de forma consistente a lo largo de la aplicación
+                * Usar peso visual y equilibro para transmitir importancia
+                * Usa alineamiento para fácil escaneo y comunicar organización y herencia. Mantener al usuario enfocado y que puede identificar los grupos de contenido.
         b. Branding
         c. Color
     vii. Dentro de la sección de Controls, describe lo siguiente:
