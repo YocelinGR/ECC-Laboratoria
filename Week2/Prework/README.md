@@ -155,8 +155,58 @@
                 * Mantener apariencia general de forma consistente a lo largo de la aplicación
                 * Usar peso visual y equilibro para transmitir importancia
                 * Usa alineamiento para fácil escaneo y comunicar organización y herencia. Mantener al usuario enfocado y que puede identificar los grupos de contenido.
+                * Dar soporte para uso con orientación horizontal y vertical
+                * Dar soporte para cambios de tamaño de texto: Hacer uso del layout para ajustar la tipografía.
+                * Provee de aplias áreas para elementos interactivos: 44pt por 44pt para todos los controles.
+                * Obtener vistas de la aplicación en varios dispositivos y orientaciones 
+                * Aplicar márgenes de legibilidad para mostrar texto en dispositivos más grandes: Mantiene lineas de texto cortas para su fácil lectura
+            - Adaptar los cambios de contexto
+                * Mantener la prioridad en el contenido actual durante cambios de contexto
+                * Evitar cambios de diseño: Mantener experiencia comparable en todos los contextos (girar, tamaños)
+                * Si es esencial que la aplicación se ejecute en una sola orientación, admitir ambas variantes
+                * Customiza la respuesta de la aplicacion para recordar de acorde al contexto: reajustar menus, etc
+                * Asegurarse que la aplicación funciona en iPad y iPhone
+                * Considere el aspect ratio para diferentes dispositivos cuando se rehusaran ilustraciones
+            - Diseñar experiencias full-screen
+                * Extender elementos visuales para rellenar la pantalla.
+                * Evitar colocar controles interactivos en la parte inferior en las esquinas: evite usar gestos del sistema, además son áreas difíciles de alcanzar.
+                *  Insertar contenido esencial para evitar recortes: En general, el contenido debe estar centrado y simétricamente insertado para que se vea bien en cualquier orientación, es recomendable usar elementos de interfaz estándar, cumplir con las guías de diseño y áreas segura definidas por el UIKit
+                * Considerar la altura de la barra de estado para diferentes dispositivos y funcionalidades como segundo plano.
+                * Permitir la ocultación automática del indicador para acceder a la pantalla de inicio con moderación. Este comportamiento debe estar habilitado solo para experiencias de visualización pasiva como reproducir videos o presentaciones de fotos.
         b. Branding
+        Las buenas aplicaciones expresan identidad de marca a través de fuentes, color y decisiones de imagen, suficientes para dar contexto, pero que no distraigan.
+            * Incorporar una marca refinada y discreta
+            * La marca no interfiere con el diseño de la aplicación: hacer que se sienta como app iOS, que sea intuitiva y que se centre en el contenido.
+            * Considerar formas menos intrusivas de implementar la marca, como usar un esquema de color personalizado o una fuente, o personalizar sutilmente el fondo.
+            * Evitar mostrar un logotipo en toda la aplicación, a menos que sea necesario
         c. Color
+            * Usar el color juiciosamente para la comunicación. El poder del color para llamar la atención sobre información importante aumenta cuando se usa con moderación.
+            * Usar colores complementarios en toda su aplicación.
+            * Usa una paleta de color limitada que coordine con tu logo.
+            * Considera elegir un color para indicar interactividad en la app
+            * Provee dos versiones de color para que se ajusten al modo claro y obscuro de la app
+            * Evita usar el mismo color para elementos en modo interactivo y el no interactivo
+            * Considerar cómo las ilustraciones y la translucidez afectan los colores
+            Realiza test de color de tu esquema bajo diferentes variaciones de luz
+            * Considera como la pantalla True Tone afecta el color
+            * Considera como el uso de color es percibido en otras culturas y paises
+            * Evita el uso de colores que pueden hacer dificil percibir el contenido de la app
+            * Sistema de color / sistema dinàmico
+                * Usa colores primarios para la vista general
+                * Usa colores secundarios para agrupar contenido o elementos dentro de la vista general
+                * Usa colores terciarios para agrupar contenido o elementos dentro de los elementos secundarios
+                * Colores definidos:
+                    - Label -> class var label: UIColor { get }
+                    - Secondary Label -> class var secondaryLabel: UIColor { get }
+                    - Tertiary Label -> class var tertiaryLabel: UIColor { get }
+                    - Quaternary Label -> class var quaternaryLabel: UIColor { get }
+                    - Placeholder text -> class var placeholderText: UIColor { get }
+                    - Separator: (permite que el contenido subyacente sea visible) -> class var separator: UIColor { get }
+                    - Opaque separator: (no permite que el contenido subyacente sea visible)
+                    - Link -> class var link: UIColor { get }
+                * Manejo del color: 
+                    - Aplicar colores de perfil a tus imagenes
+                    - Usar un color amplio para mejorar la experiencia visual 
     vii. Dentro de la sección de Controls, describe lo siguiente:
 
     viii.
