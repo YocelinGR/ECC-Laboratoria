@@ -207,18 +207,41 @@
                 * Manejo del color: 
                     - Aplicar colores de perfil a tus imagenes
                     - Usar un color amplio para mejorar la experiencia visual 
-    vii. Dentro de la sección de Controls, describe lo siguiente:
-
+    vii. Dentro de la sección de _Controls_, describe lo siguiente:
     viii.
 
-        a. Buttons
-        b. Labels
-        c. Color
+        a. Buttons:
+           Los botones inician acciones especificas, es posible que tengan un fondo, titulo o un icono.  
+           * Sistema de botones
+            Generalmente aparecen en las barras de navegación y en las barras de herramientas, pero es posible usarlas en cualquier sitio. 
+            Consejos para el uso de botones:
+                * Usa verbos en sus titulos que expresen la acción que sucdderá si entra en modo interactivo
+                * Escriba con mayúsculas cada palabra, excepto los artículos, las conjunciones de coordinación y las preposiciones de menos de cuatro letras.   * Manten los titulos cortos
+                * Considera añadir un borde o fondo solo si es necesario  
+                * Botones de dibulgación de detalles: Estos botones abren una vista (generalmente model) que contiene información adicional, se usan comúnmente en tablas para acceder ainformación sobre filas específicas. 
+                * Usa los botones de dibulgación de detalles de forma adecuada en las tablas: no usar si se desea que al tocar toda la fila se puede ver el detalle de la misma.  
+                * Botones de inofmración:  revelan detalles de configuración sobre una app.
+                * Añade botones de agregar un nuevo elemento y habilite el teclado para estas nuevas entradas. 
+        b. Labels 
+            Describen un elemento de la enterfaz o proporcionan un mensaje corto. Pueden mostrar cualquier cantidad de texto estático, pero es mejor que sean cortos.    
+            Es importante _mantener las etiquetas legibles_. Es recomentable usar el *Escritura dinámica* para mantener legible el texto, es recomendable probar estas opciones con el modo de accesibilidad habilitado. 
 
 5. Enlista tus 10 apps favoritas
-
+    * FrontEnd Masters: Nunca se traba, permite ver contenido offline, es muy legible y es fácil de navegar en ella, los icónos siempre se ven bien, el nivel de sonido siempre es suficiente, pero no excesivo. 
+    * YouToBe: El buscador es muy bueno, puedes encontrar casi cualquier cosa 
+    * YoutoBe Music: En la versión de paga puedes descargar tu musica o dejar que la app prediga que musica quieres escuchar offline según tus preferencias, el modo obscuro es muy comodo para la vista.
+    * Slack: Todo lo que esta en la versión de escriorio esta en la versión mobil, puedes modificar las notificaciones, el diseño es muy bonito y muy intuitivo
+    * Shazam: La interfaz es muy colorida, pero no distrae, si diseño es novedoso
 6. Enlista y describe los cuatro pilares de la programación orientada a objetos
-
+    * Abstracción: oculta la información que no se necesita saber para llevar a cabo una acción. Cada objeto solo expondrá un mecanismo de *alto nivel* para usarla. 
+    * Encapsulación: La relación entre la información y las funciones que la manipulan para mantener la información a salvo, las funciones no afectan lo que hay en elexterior, esto los hace mantenibles y permite el cambio de forma fácil. Los estados (privados) y responsabilidades de cada clase estan definidas. Cada clase es discreta y autocontenida. Es posible acceder unicamente a una lista de funciones públicas desde el exterior (métodos), en algunas ocasiones, estas funciones pueden cambiar el estado interno, pero no lo haran de forma directa, si no por medio de acciones. 
+    * Herencia: Nuevos objetos pueden tomar propiedades de objetos que ya existen. Hay herencia de varios tipos:
+        - Herencia simple: la clase hija, hereda el comportamiento de la clase padre y puede usar parámetros y funciones definidad antes.
+        - Herencia multi nivel: La herencia se ejecuta en varios niveles. El hijo hereda el comportamiento del padre, quien a su vez ha heredado de una clase abuela. 
+        - Herencia multiple: la herencia se puede tomar de varios padres. 
+        - Herencia jerárquica: un padre puede tener varios hijos. 
+    Nos ayudan a rehusar cosas. Los hijos rehusan todos los campos y métodos de los padres e implementan sus propios valores. 
+    * Polimorfismo: capacidad de redefinir mètodos de otras clases,es decir, un objeto, puede comportarse de formas distintas. 
 7. Dentro del paradigma de programación orientada a objetos:
 
 8. 
