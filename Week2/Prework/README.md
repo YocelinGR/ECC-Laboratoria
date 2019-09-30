@@ -235,6 +235,7 @@
 6. Enlista y describe los cuatro pilares de la programación orientada a objetos
     * Abstracción: oculta la información que no se necesita saber para llevar a cabo una acción. Cada objeto solo expondrá un mecanismo de *alto nivel* para usarla. 
     * Encapsulación: La relación entre la información y las funciones que la manipulan para mantener la información a salvo, las funciones no afectan lo que hay en elexterior, esto los hace mantenibles y permite el cambio de forma fácil. Los estados (privados) y responsabilidades de cada clase estan definidas. Cada clase es discreta y autocontenida. Es posible acceder unicamente a una lista de funciones públicas desde el exterior (métodos), en algunas ocasiones, estas funciones pueden cambiar el estado interno, pero no lo haran de forma directa, si no por medio de acciones. 
+    Ocultar el estado interno y requerir que toda la interacción se realice a través de los métodos de un objeto.
     * Herencia: Nuevos objetos pueden tomar propiedades de objetos que ya existen. Hay herencia de varios tipos:
         - Herencia simple: la clase hija, hereda el comportamiento de la clase padre y puede usar parámetros y funciones definidad antes.
         - Herencia multi nivel: La herencia se ejecuta en varios niveles. El hijo hereda el comportamiento del padre, quien a su vez ha heredado de una clase abuela. 
@@ -245,29 +246,49 @@
 7. Dentro del paradigma de programación orientada a objetos:
 
 8. 
-    i.¿Qué es un objeto?
-    ii.¿Qué es una clase?
-    iii.¿Qué es un método?
-    iv.¿Qué es una propiedad?
+    i.¿Qué es un objeto? Es la unidad bàsica de la programaciòn orientada a objetos, se definen de un estado (representado por campos) y un comportamiento (representado por mètodos). Algunos de los beneficios del uso de objetos son:
+        - Modularidad: el código fuente se puede cambiar sin afectar otros objetos
+        - Ocultar información: Solo se interactua con los métodos del objeto, los detalles quedan ocualtos
+        - Reutilización de código
+        - Facilidad de conexión y depuración: es posible reemplazar objetos completos sin afectar el programa completo. Son instancias de las clases (entidad de trabajo)
+    ii.¿Qué es una clase? Es una estructura (de datos) / tipo de datos que define las propiedades y el conjunto de instrucciones para construir un tipo específico de objetos, las clases tienen una sola responsabilidad.
+    iii.¿Qué es un método? Todos los comportamients que puede tener una clase, son funciones que son parte de una clase
+    iv.¿Qué es una propiedad? son campos de los objetos /clases que proporciona un mecanismo flexible para leer, escribir o calcular el valor de un campo privado, se usan para denotar una característica particular, abarcan los atributos como sus relaciones con otras clases. 
 
 9. Investiga y describe la arquitectura de diseño MVC
-
+    Es un patrón de arquitectura de software que usa 3 componentes: vistas, modelos y controladores, separando la lógica de la aplicación de la lógica de la vista en una aplicación. El usuario solicita al controlador quien comunica en ambos sentidos los datos con el modelo, asu vez el controlador envia los datos a la vista para que se actualice y responda visualmente al usuario. 
+    La principal utilidad de este modelo es mantener las partes de nuestra aplicación separadas por su responsabilidad. 
+        - El modelo se encarga de los datos, actualizaciones, consultas y búsquedas
+        - El controlador se encarga de la lógica de la aplicación, recibe las ordenes, solicita datos al modelo y los comunica a la vista
+        - La vista presentan los datos y toda la interfaz gráfica. 
 10. ¿Qué es un ViewController?
-
+    Es un gestor entre la aplicación y la pantalla, controla las vistas que posee de acuerdo a la lógica progrmada, administra un grupo de objetos de vista conoce el funcionamiento de la aplicación. 
+    Un controlador de vista gestiona un conjunto de vistas y ayuda a crear la interfaz de usuario de la aplicación. Se coordina con objetos modelo y otros objetos controladores. 
+    Un ViewController puede manejar una vista con varias subvistas
 11. ¿Qué es un Storyboard?
-
+    Elementos que nos permiten crear interfaces y manejar el flujo de navegación completo de la app, además permiten crear una app multivista sin usar una gran cantidad de código (todo desde un mismo archivo). 
+    Los segues (transiciones) se pueden realizar de manera fácil enre diversas escenas
 12. ¿Qué es un IBAction?
-
+    Son funciones que permite conectar las acciones que tendra un elemento de la vista con el storyboard 
 13. ¿Qué es un IBOutlet?
-
+    Son variables que tomarán un valor cuano un NIB (Objeto Constructor de Interfaz)  se carga
 14. ¿Qué es la notación CamelCase y cuáles son sus tipos? 
-
+    Es una convención para el nombraiento de variables y funciones en programación en donde la primer letrea de cada palabra de una palabra compuesta vaen mayúsculas.
+    Tipos:
+        - lowerCamelCase
+        - UpperCamelCase
 15. ¿Conoces otro tipo de notación?
-
+    - Sneak Case: my_var
+    - Hungarian notation: isActive()
 16. ¿Qué es un IDE y cuáles son sus elementos principales?
+    _Entorno de Desarrollo integrado_ es un ambiente todo en uno que brinda distintas herramientas para escribir un programa, permiten realizar actividades comunes relacioadas al desarollo desde una misma aplicación: edición del código, creación de ejecutables, depuración, etc. 
 
-
-
+    * Edición de código fuente
+        - Resaltadode sintaxis
+        - Autocompletado
+    * Ejecutables de construcción
+    * Depuración 
+    * Control de versiones
 ## Notas:
 
 * Interfaz esencial
