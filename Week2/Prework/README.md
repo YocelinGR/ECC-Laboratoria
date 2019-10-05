@@ -412,6 +412,416 @@ while true {
 }
 */
 
+
+// Las funciones dew swift comienzan por imprimir la palabra clave "func"
+// Declaraciòn de la función
+func printHelp() {
+    let message = """
+Welcome to MyApp!
+
+Run this app inside a directory of images and
+MyApp will resize them all into thumbnails
+"""
+
+    print(message)
+}
+// Llamado de la función
+printHelp()
+// Parámetros: Valores enviados edentro de la función
+// es necesario especificar el nombre del parámetro y su tipo de dato number: int
+
+func square(number: Int) {
+    print(number * number)
+}
+// Al llamar la función, se envia el valor correcto para cada parámetro
+square(number: 8)
+
+/*
+Retorno de valores, aldeclarar la funcion se debe de indicar que tipo de dato se regresara, ello despues de los parámetros, y 
+antecedido por un simbolo ->
+Dentro dela función se usa return seguido del valor a retornar
+*/
+
+func square2(number: Int) -> Int {
+    return number * number
+}
+let result = square2(number: 8)
+print(result)
+
+/*
+Etiqueta de nombre:
+Se puede asignar dos nosmbres para los parámetros, una para uso interno y otra para uso externo
+*/
+func sayHello(to name: String) {
+    print("Hello, \(name)!")
+}
+// El parametro "to name", externamente es llamado to, e internamente es llamado name, su usuo es para leer de forma mas natural
+sayHello(to: "Taylor")
+
+/*
+Omitir enviar etiquetas de los parámetros:
+Hacer uso de _(undescore) para evitar poner el nombre 
+en la ejecución de la función
+Hacer uso de esta propiedad solo cuando ello permita 
+que la función se lea de forma natural
+*/
+func greet(_ person: String) {
+    print("Hello, \(person)!")
+}
+
+greet("Taylor")
+
+/*
+Parámetros por defecto:
+Se agregan en la declaración de la función y se les asigna un valor gracias
+a un = 
+*/
+func greet2(_ person: String, nicely: Bool = true) {
+    if nicely == true {
+        print("Hello, \(person)!")
+    } else {
+        print("Oh no, it's \(person) again...")
+    }
+}
+greet2("Taylor")
+greet2("Taylor", nicely: false)
+/*
+Funciones variadas: Aceptan cualquier numero de parámetros del mismo tipo
+Si se colocan tres puntos despues del tipo de dato de
+los parametros se puede acceder a esta funcionalidad
+*/
+print("Haters", "gonna", "hate")
+func square(numbers: Int...) {
+    for number in numbers {
+        print("\(number) squared is \(number * number)")
+    }
+}
+
+square(numbers: 1, 2, 3, 4, 5)
+/*
+Try Catch de funciones (throws:
+Usar la palabra clave throw cuando algo sale mal*/
+//1. Describir un enum para los erroes 
+enum PasswordError: Error {
+    case obvious
+}
+func checkPassword(_ password: String) throws -> Bool {
+    if password == "password" {
+        throw PasswordError.obvious
+    }
+
+    return true
+}
+/*
+Try Catch (try catch):
+Usa las keyword:
+do: para empezar la sección de códigos que podrían fallas
+try: despued de cada funcion que podría generar el error
+catch: permite indicar como se manejarán los errores
+Si un error ocurre en el bloque del do, se ejecutará automáticamente
+lo que se encuentra en el bloque catch*/
+do {
+    try checkPassword("password")
+    print("That password is good!")
+} catch {
+    print("You can't use that password.")
+}
+
+
+do {
+    try checkPassword("password2")
+    print("That password is good!")
+} catch {
+    print("You can't use that password.")
+}
+/*
+Parámetros de entrada:
+Usando el keyword inout es posible afectar desde dentro 
+de la función, el valor del parámetro que entra en la función
+Cuando se usa la función, la variable se pasa como "doubleInPlace"
+precediendolo con un & para indicar que es un inout
+*/
+func doubleInPlace(number: inout Int) {
+    number *= 2
+}
+var myNum = 10 
+doubleInPlace(number: &myNum)
+print(myNum)
+
+/* Estructuras
+Son formas de crear nuestros propios tipos de datos, las estructuras se comonen de 
+constantes y variables(propiedades), así como de sus funciones(métodos)
+
+*/
+struct Sport {
+    var name: String // stored property
+}
+// Para usarlas, se crean instancias de las estructuras
+var tennis = Sport(name: "Tennis")
+print(tennis.name)
+// Se puede cambiar el valor de la propiedad
+tennis.name = "Lawn tennis"
+print(tennis.name)
+
+// Computed properties
+// Cambian de valor al correr cierto código
+struct Sport2 {
+    var name: String
+    var isOlympicSport: Bool
+
+    var olympicStatus: String {
+        if isOlympicSport {
+            return "\(name) is an Olympic sport"
+        } else {
+            return "\(name) is not an Olympic sport"
+        }
+    }
+}
+
+let chessBoxing = Sport2(name: "Chessboxing", isOlympicSport: false)
+print(chessBoxing.olympicStatus)
+let swimming = Sport2(name: "Swimming", isOlympicSport: true)
+print(swimming.olympicStatus)
+
+
+/*
+Observadores de propiedad:
+Permiten correr código antes o despues de que cambie una propiedad
+*/
+struct Progress {
+    var task: String
+    var amount: Int
+}
+// Crear una intancia y cambiar los valores
+var progress = Progress(task: "Loading data", amount: 0)
+progress.amount = 30
+progress.amount = 80
+progress.amount = 100
+print(progress.amount)
+// La propiedad didSet observa por cambios en la propiedad indicada
+struct Progress2 {
+    var task: String
+    var amount: Int {
+        didSet {
+            print("\(task) is now \(amount)% complete")
+        }
+    }
+}
+var progress2 = Progress2(task: "Loading data", amount: 0)
+progress2.amount = 30
+progress2.amount = 80
+progress2.amount = 100
+
+// Con willSet puedes tomar acciones antes de cambiar la propiedad
+
+struct Progress3 {
+    var task: String
+    var amount: Int {
+        willSet {
+            print("\(task) is change to \(amount)% complete")
+        }
+    }
+}
+var progress3 = Progress3(task: "Loading data", amount: 0)
+progress3.amount = 30
+progress3.amount = 80
+progress3.amount = 100
+
+
+/*
+Metodos
+Funciones que pueden usar las propiedades de la estructura
+*/
+struct City {
+    var population: Int
+
+    func collectTaxes() -> Int {
+        return population * 1000
+    }
+}
+let london = City(population: 9_000_000)
+let myLondon = london.collectTaxes()
+print(myLondon)
+// Mutación de metodos
+// Ayudan a indicar que un metodo mutara de valor una 
+// propiedad de la estructura
+
+struct Person {
+    var name: String
+
+    mutating func makeAnonymous() {
+        name = "Anonymous"
+    }
+}
+
+var person = Person(name: "Ed")
+person.makeAnonymous()
+print(person.name)
+
+// Propiedades y métodos de strings
+let string = "Do or do not, there is no try."
+// Numero de caracteres
+print(string.count)
+// Identifica si un substring esta contenido en:
+print(string.hasPrefix("Do"))
+// Convierte a mayusculas
+print(string.uppercased())
+// Crea un arreglo con las letras ordenadas
+print(string.sorted())
+
+// Propiedades y metodos de los arreglos
+var toys = ["Woody"]
+// Numero de items:
+print(toys.count)
+// Agrega un elemento al final
+toys.append("Buzz")
+print(toys)
+// Encuentra el indice de un elemento
+toys.firstIndex(of: "Buzz")
+print(toys.firstIndex(of: "Buzz"))
+// ordena el arreglo
+print(toys.sorted())
+// remueve un elemento
+toys.remove(at: 0)
+print(toys)
+
+// Inicializadores
+// Indican si se quiere crear una estructura con un valor por defecto
+
+// Sin inicializador
+struct User {
+    var username: String
+}
+var user = User(username: "twostraws")
+print(user)
+
+// con inicializador
+struct User2 {
+    var username: String
+
+    init() {
+        username = "Anonymous"
+        print("Creating a new user!")
+    }
+}
+
+var user2 = User2()
+// no es necesario usar el keyword func para inicializadores, 
+// pero es obligatorio que todos los valores tengan un valor antes
+// de que finalice el inicializador
+user2.username = "twostraws"
+print(user2.username)
+
+// Referencia al a instancia en curso
+/*
+Esta propiedad ayuda a referir a las propiedades que se
+encuentran dentro de la estructura y se refieren a la instancia creada
+Son muy utiles al distinguir entre propiedades (self) y parámetros 
+*/
+struct PersonSelf {
+    var name: String
+
+    init(name: String) {
+        print("\(name) was born!")
+        self.name = name
+    }
+}
+var myPerson = PersonSelf(name: "Yocelin")
+print(myPerson.name)
+
+/*
+Propiedades flojas xD
+Ayudan a crear propiedades solo cuando es necesario
+*/
+struct FamilyTree {
+    init() {
+        print("Creating family tree!")
+    }
+}
+
+struct PersonLazy {
+    var name: String
+    lazy  var familyTree = FamilyTree()
+
+    init(name: String) {
+        self.name = name
+    }
+}
+
+var ed = PersonLazy(name: "Ed")
+print(ed.familyTree)
+/*
+Propiedades estaticas y metodos
+Cada estructura permite crear diferentes instancias de ella
+*/
+struct Student {
+    var name: String
+
+    init(name: String) {
+        self.name = name
+    }
+}
+
+let ed2 = Student(name: "Ed")
+print(ed2.name)
+let taylor = Student(name: "Taylor")
+print(taylor.name)
+
+// si se declaran propiedades o metodos como static tendrán el
+// mismo valor para cada isntancia
+struct StudentStatic {
+    static var classSize = 0
+    var name: String
+
+    init(name: String) {
+        self.name = name
+        StudentStatic.classSize += 1
+    }
+}
+let ed3 = StudentStatic(name: "Ed")
+print(StudentStatic.classSize)
+
+/*
+Control de acceso
+Restringe qué código puede usar propiedades y métodos
+*/
+struct PersonId {
+    var id: String
+
+    init(id: String) {
+        self.id = id
+    }
+}
+
+let edId = PersonId(id: "12345")
+print(edId.id)
+struct PersonPrivate {
+    private var id: String
+
+    init(id: String) {
+        self.id = id
+    }
+}
+/* No se puede:
+let edIdPriv = PersonPrivate(id: "12345")
+print(edIdPriv.id)
+*/
+
+struct PersonPrivateTrue {
+    private var id: String
+
+    init(id: String) {
+        self.id = id
+    }
+
+    func identify() -> String {
+        return "My social security number is \(id)"
+    }
+}
+
+let edIdPriv2 = PersonPrivateTrue(id: "12345")
+print(edIdPriv2.identify())
+
 ```
 
 03. Entra a https://developer.apple.com/design/human-interface-guidelines/ios/overview/themes/ y contesta lo siguiente:
