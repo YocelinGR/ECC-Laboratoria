@@ -30,7 +30,7 @@ print(colors2)
 
 // Tuplas
 // Tipo de dato que permite guardar multiples valores (diferentes o no) en un 
-// valor. Las tuplas:
+// mismo dato. Las tuplas:
 // * Son fijas en valor (no puede cambiar sus conceptos o sus tipos)
 // * Es posible accesar a cada concepto de la tupla por medio de su posicion 
 // o de su nombre (si no existen, no se pueden accesar a ellos)
@@ -45,7 +45,7 @@ print(name.0)
 // name.0 = 24 debería ser erroneo, por que name.0 es y será siempre string
 
 // Arrays vs Sets vs Tuples
-// Usar tuplas para colecciones espefificas, que no cambiaran en estructura y cuyos 
+// Usar tuplas para colecciones específicas, que no cambiarán en estructura y cuyos 
 // conceptos permanecerán con el mismo nombre/posición
 let address = (house: 555, street: "Taylor Swift Avenue", city: "Nashville")
 print(address)
@@ -143,7 +143,7 @@ enum Planet: Int {
 let earth = Planet(rawValue: 2)
 print(earth)
 
-// asinar al cre<r
+// asignar al crear
 enum Planet2: Int {
     case mercury = 1
     case venus
@@ -272,7 +272,7 @@ while true {
 
 // STRUCTS 
 /* Estructuras
-Son formas de crear nuestros propios tipos de datos, las estructuras se comonen de 
+Son formas de crear nuestros propios tipos de datos, las estructuras se componen de 
 constantes y variables(propiedades), así como de sus funciones(métodos)
 
 */
@@ -309,7 +309,7 @@ print(swimming.olympicStatus)
 
 /*
 Observadores de propiedad:
-Permiten correr código antes o despues de que cambie una propiedad
+Permiten correr código antes o después de que cambie una propiedad
 */
 struct Progress {
     var task: String
@@ -352,7 +352,7 @@ progress3.amount = 100
 
 
 /*
-Metodos
+métodos
 Funciones que pueden usar las propiedades de la estructura
 */
 struct City {
@@ -365,8 +365,8 @@ struct City {
 let london = City(population: 9_000_000)
 let myLondon = london.collectTaxes()
 print(myLondon)
-// Mutación de metodos
-// Ayudan a indicar que un metodo mutara de valor una 
+// Mutación de métodos
+// Ayudan a indicar que un método mutara de valor una 
 // propiedad de la estructura
 
 struct Person {
@@ -383,7 +383,7 @@ print(person.name)
 
 // Propiedades y métodos de strings
 let string = "Do or do not, there is no try."
-// Numero de caracteres
+// Número de caracteres
 print(string.count)
 // Identifica si un substring esta contenido en:
 print(string.hasPrefix("Do"))
@@ -392,9 +392,9 @@ print(string.uppercased())
 // Crea un arreglo con las letras ordenadas
 print(string.sorted())
 
-// Propiedades y metodos de los arreglos
+// Propiedades y métodos de los arreglos
 var toys = ["Woody"]
-// Numero de items:
+// Número de items:
 print(toys.count)
 // Agrega un elemento al final
 toys.append("Buzz")
@@ -474,7 +474,7 @@ struct PersonLazy {
 var ed = PersonLazy(name: "Ed")
 print(ed.familyTree)
 /*
-Propiedades estaticas y metodos
+Propiedades estáticas y métodos
 Cada estructura permite crear diferentes instancias de ella
 */
 struct Student {
@@ -490,7 +490,7 @@ print(ed2.name)
 let taylor = Student(name: "Taylor")
 print(taylor.name)
 
-// si se declaran propiedades o metodos como static tendrán el
+// si se declaran propiedades o métodos como static tendrán el
 // mismo valor para cada isntancia
 struct StudentStatic {
     static var classSize = 0
@@ -708,12 +708,12 @@ print(age)
 
 /*
 Deselvonviendo opcionales
-Cuando una variable esta vacia en memoria, su valor en nil,
+Cuando una variable esta vacía en memoria, su valor en nil,
 por lo que apesar de que este definido para tener cierto tipo de dato, no podrá acceder 
-a los metodos definidos para él
+a los métodos definidos para él
 El proceso de unwrapping,  es aquel que permite manejar estos casos para 
 prevenir que el proceso se inseguro.
-Uno de los metodos usados, es el uso de if let, en el que se crea la variable 
+Uno de los métodos usados, es el uso de if let, en el que se crea la variable 
 si existe, en caso contrario fallará
 */
 var name: String? = nil
@@ -751,23 +751,25 @@ un valor especifíco, es recomendable usar el unwrapping forzado.
 */
 let str = "5"
 let num = Int(str)
-// Escribiendo ! después de Int(str) aseguramos que siembre se haga la asignación si el valor de str es casteable como Int
+// Escribiendo ! después de Int(str) aseguramos que siembre se haga la asignación si el valor de str es casteable //// como Int
 let num2 = Int(str)!
-// Es necesario aclarar que si no es casteable, la app romperá, por lo que solo es recomendable usar este caso cuando se este seguro
-// que siempre se cumplirá la condición
+/* Es necesario aclarar que si no es casteable, la app romperá, por lo que solo es recomendable usar este caso cuando se este seguro
+/* que siempre se cumplirá la condición
 
 /*
 OPCIONALES IMPLICITOS CON UNWRAPPING
 Este tipo de opcionales, pueden tener un valor o pueden ser nil, pero no necesitan ser desenvueltas para poder usarse, se crean al agregar 
 un signo de ! después del tipo de dato y se les asigna el valor nil, dado esto, se comportan como si estuvieran desenvueltos sin necesidad de 
-usar if let o guard let, pero si no tienen un valor, el código fallará
-*/
+usar if let o guard let, pero si no tienen un valor, el código fallará*/
+
+
 let age: Int! = nil
 
 /*
 NIL COALESCING
-Son de ayuda para proporcionar un retorno a un valor con base en unac omparación, deberá asignarse un valor por defecto
+Son de ayuda para proporcionar un retorno a un valor con base en una comparación, deberá asignarse un valor por defecto
 */
+
 func username(for id: Int) -> String? {
     if id == 1 {
         return "Taylor Swift"
@@ -827,7 +829,7 @@ if let result2 = try? checkPassword("password2") {
     print("D'oh.")
 }
 /*
-Otra alternativa, el el uso de try!, que solo se usará cuand se sabe que la funcion resultará de forma positiva
+Otra alternativa, el el uso de try!, que solo se usará cuando se sabe que la funcion resultará de forma positiva
 */
 try! checkPassword("sekrit")
 print("OK!")
@@ -852,5 +854,31 @@ let abril =  Person(id: "123456789")
 print(abril == nil) // Es falso, por que el id tiene la longitud adecuada
 let abril2 =  Person(id: "1234")
 print(abril2 == nil) // Es true por que la longitud es menor
+
+/*Typecasiting
+Hace Un retorno opcional dependiendo del tipo de si el tipo 
+de dato por el que se pregunta, cumple la condiciòn
+En el ejemplo, se tiene un arreglo de mascotas que contiene 
+intancias de una clase (algunas son derivadas de la calse
+original, y otras son derivadas de una clase hija) 
+Este arreglo serà de clase Animals (por inferencia de tipo)
+y se hecharà mano del typecasting para saber en cual de 
+esos conceptos, se puede invocar el método makeNoise()
+*/
+class Animal { }
+class Fish: Animal { }
+
+class Dog: Animal {
+    func makeNoise() {
+        print("Woof!")
+    }
+}
+let pets = [Fish(), Dog(), Fish(), Dog()]
+for pet in pets {
+    if let dog = pet as? Dog {
+        dog.makeNoise()
+    }
+}
+
 // -----
 ```
