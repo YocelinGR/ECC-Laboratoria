@@ -754,7 +754,7 @@ let num = Int(str)
 // Escribiendo ! después de Int(str) aseguramos que siembre se haga la asignación si el valor de str es casteable //// como Int
 let num2 = Int(str)!
 /* Es necesario aclarar que si no es casteable, la app romperá, por lo que solo es recomendable usar este caso cuando se este seguro
-/* que siempre se cumplirá la condición
+que siempre se cumplirá la condición*/
 
 /*
 OPCIONALES IMPLICITOS CON UNWRAPPING
