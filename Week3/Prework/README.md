@@ -957,4 +957,49 @@ Se comunica con objetos de vista y de modelo. Además realizan tareas de configu
 
 ## APP Life Cycle
 
-El estado de la app determina lo que se puede o no hacer en determinado momento, 
+El estado de la app determina lo que se puede o no hacer en determinado momento. En IOS, se puede actualizar el estado por medio de objetos de escenas ( para iOS 13 y posteriores) o en eventos de aplicación (iOS 12 y menores).
+
+### Eventos del ciclo de vida basados en escena
+Una escena representa una instancia de la interfaz, cada escena tiene su propio ciclo de vida.
+* El UIKit crea una escena y la coloca en estado no conectado -> configuara UI inicial y cargar datos
+* Una escena solicitada pasa a primer plano (aparecen en pantalla) -> Configurar UI
+* Una escena va al fondo si tiene que procesar un evento -> Guardad datos y silenciar el comportamiento
+* Una escena se mueve al estado de fondo si se descarta la interfaz -> Libere espacio de memoria
+* Si el UIKit desconecta una escena puede recuperar sus recursos y volverla no conectada. -> Limpiar recursos asociados a la escena
+### Eventos del ciclo de vida basados en aplicaciones
+El UIKit entregalos eventos de ciclo de vida al objeto, y un delegado administra las ventanas de la app. 
+* Inicio -> Inicializa las estructuras de datos y  la nterfaz de usuario
+* Estado inactivo o segundo plano -> configurar UI
+* Estado activo o primer plano 
+* Desactivar -> Guardar datos y silenciar comportamiento de la app
+* La app finaliza -> Libere memora
+
+### Estados de la app
+
+- Not Running: la aplicación aún no se ha iniciado o se estaba ejecutando y el sistema la ha cancelado.
+- In Active: una aplicación se está ejecutando en primer plano pero no recibe ningún evento.  En este estado, no podemos interactuar con la interfaz de usuario de la aplicación.
+- Active: una aplicación se ejecuta en primer plano y recibe los eventos. El usuario normalmente interactúa con la interfaz de usuario y puede ver la respuesta / resultado de las acciones del usuario.
+- Background: una aplicación se ejecuta en segundo plano y ejecuta el código.
+- Suspended: una aplicación está en segundo plano pero no está ejecutando el código.
+
+Proceso:
+
+*application: UIApplicationDelegate*: se llama a  este método después de que la aplicación se haya iniciado correctamente, es un protocolo que recibe notificaciones sobre eventos del usuario, es el primer método de nuestro delegado de aplicaciones, que se llamará. Puede ejecutar su código si el lanzamiento fue exitoso.
+
+*aplicación: willFinishLaunchingWithOptions: -> Bool* El método configura la app de forma inicial, pero no inicia el estado
+
+*aplicación: didFinishLaunchingWithOptions: -> Bool* La app finalizó el inicio y restauro el estado, realiza actividades como la creación de la interfaz
+
+*applicationWillEnterForeground* re activa la aplicación después de una interrupción del sistema
+
+*applicationDidBecomeActive* Finaliza la transición al primer plano, se llama a este método para que su aplicación sepa que se movió del estado inactivo al activo, se usa para reiniciar las tareas que se detuvieron (o que aún no se iniciaron) mientras la aplicación estaba inactiva.
+
+*applicationWillResignActive* La aplicación esta apunto de quedar inactiva. Debe usar este método para pausar cualquier tarea en curso o deshabilitar los temporizadores, etc.
+
+*applicationDidEnterBackground* La aplicación entra en un estado de fondo (luego de volverse inactiva). Da 5 seg para hacer copias de seguridad. En caso de que necesite tiempo adicional, puede solicitar un tiempo de ejecución adicional del sistema llamando a beginBackgroundTask (expirationHandler :) . Si el método no regresa antes de que se agote el tiempo, su aplicación se termina y se purga de la memoria.
+
+*applicationWillEnterForeground*:  este método se llama como parte de la transición del fondo al estado activo. Debe usar esto para deshacer cualquier cambio que haya realizado en su aplicación al ingresar al fondo. Se llama al método applicationDidBecomeActive poco después de que este método haya finalizado su ejecución, que luego mueve la aplicación del estado inactivo al activo.
+
+*applicationWillTerminate* La appp está a punto de ser eliminada de la memoria. Se puede llamar a este método en situaciones en las que la aplicación se ejecuta en segundo plano (no está suspendida) y el sistema necesita finalizarla por algún motivo. 
+
+
