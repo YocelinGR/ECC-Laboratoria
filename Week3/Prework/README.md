@@ -882,3 +882,124 @@ for pet in pets {
 
 // -----
 ```
+## Modelo Vista cotrolador
+
+```
+    Un patrón de diseño es una solución reutilizable a problemas recurrentes que suelen ocurrir en el diseño de software. 
+    Determinan la forma concreta de trabajar que permite evitar problemas. 
+```
+
+Es un patrón de diseño de software que se compone de tres objetos principales: Modelo - Vista - Controlador.
+Se basa en dividir el software en tres capas distintas y separadas, cada capatiene una única responsabilidad. 
+
+1. *Modelo*: Donde reside la información. Cosas como la persistencia, el modelo de objetos, parseo, manejadores y ruteo residen aquí.
+2. *Vista*: Es el cómo luciará la aplicación. Sus componentes son comunmente rehusables y extensibles.
+Define la interfaz.
+3. *Controlador*: Es un mediador entre la vista y el modelo por medio del patron de delegación. Usa protocolos para lograr la comunicación con los otros elementos del modelo. 
+Su funcion principal es mantener sincronizadas las otras dos capas. 
+
+### Modelo
+Gestiona los datos de la aplicación, además puede incluir:
+* Código de red:  Hace uso de clases para lograr la comunicación, facilitar la abstracción de conceptos comunes a todas las soliitudes de red (encabezados de http), respuestas y manejo de errores (CocoaTouch es una clase nativa de comunicación).
+* Código de persistencia: se usa para conservar datos en una base de datos, datos centrales o si se guarda información en el dispositivo
+* Código de parseo: Puede incluir objetos que parseen las respuestas del network, este pareo será autocontenido, de tal forma que la capade red no conocerá los detalles de los objeto del modelo. convierten las respuestas del servidor, en objetos del modelo. 
+* Capas y clases manejadores y de abstracción: Clases que actuan como managers de varias clases.
+* Data sources y delegates: Es más comun encontrar estos recursos en el controlador.
+Constantes: Es buena practica tener un archivo con constantes que esten dentro de una estructura de estructuras o variables.
+* Ayudantes y extensiones: Código que ayuda a realizar tareas a lo largo de la aplicación y que manipulan la información
+* Los objetos del modelo encapsulan los datos y definen la lógica y calculos que manipulan esos datos. 
+* Los objetos de modelo se comunican a través de un objeto controlador  que es notificado para que actualice un objeto de vista. 
+
+### La vista
+Es la capa de elementos de interfaz, no contiene ninguna lógica de negocio. su función principal es mostrar los datos del modelo y ofrecer la posibilidad de modificar esos datos. 
+Normalmente esta compuesta de:
+* UIView subclases
+* Clases que forman parte de un UIKit o AppKit
+* Animaciones
+* Gráficos
+Sus componentes son a menudo rehusables 
+
+Un objeto de vista sabe como dibujarse y puede responder a las acciones del usuario. 
+Pueden mostrar la información que se almacena en el modelo.
+La vista se comunica con  el modelo a través del controlador, quien lecomunica (en ambos sentidos) los cambios de información que ocurren
+
+### Controlador
+
+Implica las reglas de negocio, usa todos los elementos en la capa de modelo para definir el flujo de información de la aplicación.
+Definen cosas como:
+- El usos de persistencia o consultas externas
+- Actualización de la app
+- Flujo entre pantallas
+- Acciones ante interacción del usuario
+
+Es un mediador entre el modelo y la vista.
+El uso de este modelo, puede ayudar a que los elementos en la aplicación sean más rehusables y a que las interfaces esten mejor definidas.
+Son conductores a traves de los cuales, las acciones e información que cambian en la vista, pasen almodelo y viceversa. 
+Se comunica con objetos de vista y de modelo. Además realizan tareas de configuración y coordinación de la app, administrando el ciclo de vida de otros objetos.
+
+#### Consejos para llevar a cabo de forma adecuala el modelo MVC en IOS
+* El view controller debe ser responsable de responder a las acciones que el usuario realiza en la view de la aplicación
+* El view controller debe ser responsable de actualizar el modelo de la aplicación
+* No incluir cosas como UITableDataSource o UITableViewDelegate dentro de el view controller
+* Lo mejor es que no realizar operaciones de comunicación con servidor directamente en el view controller
+* Está totalmente prohibido añadir métodos de parseo de datos dentro del view controller
+
+#### Patrones de diseño en IOS
+* Delegation
+* Singleton
+* KVO
+* etc. 
+
+#### Otros patrones de diseño
+* MVP
+* VVMM
+* Viper
+
+## APP Life Cycle
+
+El estado de la app determina lo que se puede o no hacer en determinado momento. En IOS, se puede actualizar el estado por medio de objetos de escenas ( para iOS 13 y posteriores) o en eventos de aplicación (iOS 12 y menores).
+
+### Eventos del ciclo de vida basados en escena
+Una escena representa una instancia de la interfaz, cada escena tiene su propio ciclo de vida.
+* El UIKit crea una escena y la coloca en estado no conectado -> configuara UI inicial y cargar datos
+* Una escena solicitada pasa a primer plano (aparecen en pantalla) -> Configurar UI
+* Una escena va al fondo si tiene que procesar un evento -> Guardad datos y silenciar el comportamiento
+* Una escena se mueve al estado de fondo si se descarta la interfaz -> Libere espacio de memoria
+* Si el UIKit desconecta una escena puede recuperar sus recursos y volverla no conectada. -> Limpiar recursos asociados a la escena
+### Eventos del ciclo de vida basados en aplicaciones
+El UIKit entregalos eventos de ciclo de vida al objeto, y un delegado administra las ventanas de la app. 
+* Inicio -> Inicializa las estructuras de datos y  la nterfaz de usuario
+* Estado inactivo o segundo plano -> configurar UI
+* Estado activo o primer plano 
+* Desactivar -> Guardar datos y silenciar comportamiento de la app
+* La app finaliza -> Libere memora
+
+### Estados de la app
+
+- Not Running: la aplicación aún no se ha iniciado o se estaba ejecutando y el sistema la ha cancelado.
+- In Active: una aplicación se está ejecutando en primer plano pero no recibe ningún evento.  En este estado, no podemos interactuar con la interfaz de usuario de la aplicación.
+- Active: una aplicación se ejecuta en primer plano y recibe los eventos. El usuario normalmente interactúa con la interfaz de usuario y puede ver la respuesta / resultado de las acciones del usuario.
+- Background: una aplicación se ejecuta en segundo plano y ejecuta el código.
+- Suspended: una aplicación está en segundo plano pero no está ejecutando el código.
+
+Proceso:
+
+*application: UIApplicationDelegate*: se llama a  este método después de que la aplicación se haya iniciado correctamente, es un protocolo que recibe notificaciones sobre eventos del usuario, es el primer método de nuestro delegado de aplicaciones, que se llamará. Puede ejecutar su código si el lanzamiento fue exitoso.
+
+*aplicación: willFinishLaunchingWithOptions: -> Bool* El método configura la app de forma inicial, pero no inicia el estado
+
+*aplicación: didFinishLaunchingWithOptions: -> Bool* La app finalizó el inicio y restauro el estado, realiza actividades como la creación de la interfaz
+
+*applicationWillEnterForeground* re activa la aplicación después de una interrupción del sistema
+
+*applicationDidBecomeActive* Finaliza la transición al primer plano, se llama a este método para que su aplicación sepa que se movió del estado inactivo al activo, se usa para reiniciar las tareas que se detuvieron (o que aún no se iniciaron) mientras la aplicación estaba inactiva.
+
+*applicationWillResignActive* La aplicación esta apunto de quedar inactiva. Debe usar este método para pausar cualquier tarea en curso o deshabilitar los temporizadores, etc.
+
+*applicationDidEnterBackground* La aplicación entra en un estado de fondo (luego de volverse inactiva). Da 5 seg para hacer copias de seguridad. En caso de que necesite tiempo adicional, puede solicitar un tiempo de ejecución adicional del sistema llamando a beginBackgroundTask (expirationHandler :) . Si el método no regresa antes de que se agote el tiempo, su aplicación se termina y se purga de la memoria.
+
+*applicationWillEnterForeground*:  este método se llama como parte de la transición del fondo al estado activo. Debe usar esto para deshacer cualquier cambio que haya realizado en su aplicación al ingresar al fondo. Se llama al método applicationDidBecomeActive poco después de que este método haya finalizado su ejecución, que luego mueve la aplicación del estado inactivo al activo.
+
+*applicationWillTerminate* La appp está a punto de ser eliminada de la memoria. Se puede llamar a este método en situaciones en las que la aplicación se ejecuta en segundo plano (no está suspendida) y el sistema necesita finalizarla por algún motivo. 
+
+
